@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  image_adder:
+    image: image_adder:0.1.0
+    container_name: image_adder
+    working_dir: /app/image_adder
+    ports:
+        - "8001:8001"
+    volumes:
+      - /home/user/workspace/image_adder/image_adder/config.ini:/app/config.ini:rw
+      - /home/user/workspace/image_adder/log:/app/log
+    command: [ python , main.py ]
+    restart: unless-stopped
+    build:
+      context: .
